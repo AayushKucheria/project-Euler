@@ -5,11 +5,11 @@
 
 
 sum = 0
-for x in range(3, 1001):
+for x in range(3, 1000):
     if x % 3 == 0:
         sum += x
         continue
     if x % 5 == 0:
         sum += x
 
-print (sum)
+print(sum)
