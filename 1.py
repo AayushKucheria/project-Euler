@@ -12,4 +12,4 @@ for x in range(3, 1001):
     if x % 5 == 0:
         sum += x
 
-print(sum)
+print (sum)
