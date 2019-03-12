@@ -1,3 +1,5 @@
+import time
+
 def palindrome(n):
     opp = 0
     original = n
@@ -12,6 +14,15 @@ def palindrome(n):
         return False
 
 
+# A better solution?
+def palindrome1(n):
+    if n == n[::-1]:
+        return True
+    else:
+        return False
+
+
+tstart = time.time()
 i = 999
 flag = 0
 max = 0
@@ -27,3 +38,4 @@ while (i > 99) and (flag != 5):
         j -= 1
     i -= 1
 print(max)
+print("run time = ", str(time.time() - tstart))
