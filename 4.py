@@ -13,15 +13,17 @@ def palindrome(n):
 
 
 i = 999
-j = 999
 flag = 0
-while (i > 99) and (flag == 0):
-    while (j > 99) and (flag == 0):
+max = 0
+while (i > 99) and (flag != 5):
+    j = 999
+    while (j > 99) and (flag != 5):
         product = i * j
         if palindrome(product):
-            print(i, " and ", j)
-            print(product)
-            flag = 1
-            break
+            print(i, " and ", j, " = ", product)
+            if product > max:
+                max = product
+            flag += 1
         j -= 1
     i -= 1
+print(max)
