@@ -1,43 +1,47 @@
-# Q -
+# Q - What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-# TRY - Multiply all prime nos in list and then check for factor
+# Concept Used - Multiply prime numbers and keep adding base value until all non-prime numbers are factors
+# Concept Not Used - Tried finding generalized patters in prime+non-prime numbers. Failed.
 
 def getprime(original):
     prime = []
-    flag = 0
     for i in original:
-        for j in range(2, i):
+        flag = 0
+        j = 2
+        while j < i and flag == 0:
             if i % j == 0:
                 flag = 1
-                break
+            j += 1
         if flag == 0:
+            original.remove(i)
             prime.append(i)
-    return prime
+    return original, prime
 
 
-print("Enter the higher limit - ")
-limit = int(input())
-list = [1]
-for i in range(2, limit + 1):
-    list.append(i)
-print("Original List: ", list)
-primelist = getprime(list)
-print("Prime list: ", primelist)
+# Can be changed as per use
+high = 20
 
-# primeproduct = 19 * 17 * 13 * 11 * 7 * 5 * 3 * 2
-# print("prime product is ", primeproduct)
-# print("24 times primeproduct is ", 24 * primeproduct)
-# listwithoutprime = [20, 18, 16, 15, 14, 12, 10, 9, 8, 6, 4]
-# count = 0
-# while count != 11:
-#     count = 0
-#     for i in listwithoutprime:
-#         if primeproduct % i == 0:
-#             count += 1
-#             print(count)
-#         else:
-#             break
-#     if count != 11:
-#         primeproduct += 9699690
-#     else:
-#         print(primeproduct)
+originallist = []
+for i in range(2, high + 1):
+    originallist.append(i)
+
+notprimelist, primelist = getprime(originallist)
+
+primebaseproduct = 1
+for i in primelist:
+    primebaseproduct *= i
+primeproduct = primebaseproduct
+
+count = 0
+while count != len(notprimelist):
+    count = 0
+    for i in notprimelist:
+        if primeproduct % i == 0:
+            count += 1
+            print(count)
+        else:
+            break
+    if count != len(notprimelist):
+        primeproduct += primebaseproduct
+    else:
+        print(primeproduct)
